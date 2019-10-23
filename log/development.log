@@ -1,0 +1,1792 @@
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20190916190524)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190916190524"]]
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePhotos (20190916190535)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "photos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date_time" date, "file_name" varchar, "user_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190916190535"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20190916190544)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date_time" date, "comment_text" varchar, "user_id" integer, "photo_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190916190544"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to LoadData (20190916190824)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPhoto Destroy (0.5ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mComment Destroy (0.1ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Justin"], ["last_name", "Bieber"], ["created_at", "2019-09-16 19:09:11.463233"], ["updated_at", "2019-09-16 19:09:11.463233"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Paris"], ["last_name", "Hilton"], ["created_at", "2019-09-16 19:09:11.464421"], ["updated_at", "2019-09-16 19:09:11.464421"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Megan"], ["last_name", "Trainor"], ["created_at", "2019-09-16 19:09:11.465365"], ["updated_at", "2019-09-16 19:09:11.465365"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Barack"], ["last_name", "Obama"], ["created_at", "2019-09-16 19:09:11.466291"], ["updated_at", "2019-09-16 19:09:11.466291"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Santa"], ["last_name", "Claus"], ["created_at", "2019-09-16 19:09:11.467208"], ["updated_at", "2019-09-16 19:09:11.467208"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "John"], ["last_name", "Ousterhout"], ["created_at", "2019-09-16 19:09:11.468123"], ["updated_at", "2019-09-16 19:09:11.468123"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2012-08-30"], ["file_name", "ouster.jpg"], ["user_id", 6], ["created_at", "2019-09-16 19:09:11.479476"], ["updated_at", "2019-09-16 19:09:11.479476"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2009-09-13"], ["file_name", "bieber1.jpg"], ["user_id", 1], ["created_at", "2019-09-16 19:09:11.480832"], ["updated_at", "2019-09-16 19:09:11.480832"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2009-09-13"], ["file_name", "bieber2.jpg"], ["user_id", 1], ["created_at", "2019-09-16 19:09:11.481869"], ["updated_at", "2019-09-16 19:09:11.481869"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2013-11-18"], ["file_name", "hilton1.jpg"], ["user_id", 2], ["created_at", "2019-09-16 19:09:11.482926"], ["updated_at", "2019-09-16 19:09:11.482926"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2013-09-20"], ["file_name", "hilton2.jpg"], ["user_id", 2], ["created_at", "2019-09-16 19:09:11.483922"], ["updated_at", "2019-09-16 19:09:11.483922"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2009-07-10"], ["file_name", "obama1.jpg"], ["user_id", 4], ["created_at", "2019-09-16 19:09:11.484961"], ["updated_at", "2019-09-16 19:09:11.484961"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2010-03-18"], ["file_name", "obama2.jpg"], ["user_id", 4], ["created_at", "2019-09-16 19:09:11.486127"], ["updated_at", "2019-09-16 19:09:11.486127"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2010-08-30"], ["file_name", "obama3.jpg"], ["user_id", 4], ["created_at", "2019-09-16 19:09:11.487215"], ["updated_at", "2019-09-16 19:09:11.487215"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2013-12-03"], ["file_name", "megan1.jpg"], ["user_id", 3], ["created_at", "2019-09-16 19:09:11.488416"], ["updated_at", "2019-09-16 19:09:11.488416"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2013-12-03"], ["file_name", "megan2.jpg"], ["user_id", 3], ["created_at", "2019-09-16 19:09:11.489557"], ["updated_at", "2019-09-16 19:09:11.489557"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2013-09-04"], ["file_name", "santa1.jpg"], ["user_id", 5], ["created_at", "2019-09-16 19:09:11.490615"], ["updated_at", "2019-09-16 19:09:11.490615"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("date_time", "file_name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_time", "2013-10-16"], ["file_name", "obama4.jpg"], ["user_id", 4], ["created_at", "2019-09-16 19:09:11.491909"], ["updated_at", "2019-09-16 19:09:11.491909"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2012-09-02"], ["comment_text", "Learning new programming languages is hard..."], ["user_id", 6], ["photo_id", 1], ["created_at", "2019-09-16 19:09:11.496668"], ["updated_at", "2019-09-16 19:09:11.496668"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-09-06"], ["comment_text", "This is another comment, with a bit more text; if the text gets long enough, does it wrap properly from line to line?"], ["user_id", 6], ["photo_id", 1], ["created_at", "2019-09-16 19:09:11.497858"], ["updated_at", "2019-09-16 19:09:11.497858"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-09-08"], ["comment_text", "If you see this text in <b>boldface</b> then HTML escaping isn't working properly."], ["user_id", 6], ["photo_id", 1], ["created_at", "2019-09-16 19:09:11.498915"], ["updated_at", "2019-09-16 19:09:11.498915"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2009-09-14"], ["comment_text", "No, people, she is *not* my mom.  She's my date."], ["user_id", 1], ["photo_id", 2], ["created_at", "2019-09-16 19:09:11.499970"], ["updated_at", "2019-09-16 19:09:11.499970"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-11-28"], ["comment_text", "I came up with lots of comments for this photo, but unfortunately none of them are printable."], ["user_id", 6], ["photo_id", 5], ["created_at", "2019-09-16 19:09:11.503697"], ["updated_at", "2019-09-16 19:09:11.503697"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-11-02"], ["comment_text", "Hey Barack, great form! Can u give me some bowling tips? xxoo Paris"], ["user_id", 2], ["photo_id", 7], ["created_at", "2019-09-16 19:09:11.504782"], ["updated_at", "2019-09-16 19:09:11.504782"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-11-02"], ["comment_text", "Sure, let's get together when Lindsay gets out of rehab and I get healthcare.gov working."], ["user_id", 4], ["photo_id", 7], ["created_at", "2019-09-16 19:09:11.505854"], ["updated_at", "2019-09-16 19:09:11.505854"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2010-09-06"], ["comment_text", "We're off to a Justin Bieber concert"], ["user_id", 4], ["photo_id", 8], ["created_at", "2019-09-16 19:09:11.507035"], ["updated_at", "2019-09-16 19:09:11.507035"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-10-16"], ["comment_text", "He kept trying to tell me that healthcare.gov is fixed, but I could see as plain as day that they forgot a </div>. Can anyone tell me why we're building this site in Java instead of Rails?"], ["user_id", 4], ["photo_id", 12], ["created_at", "2019-09-16 19:09:11.508126"], ["updated_at", "2019-09-16 19:09:11.508126"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-12-04"], ["comment_text", "To all my fans, I just want to say how Iam all about that base."], ["user_id", 3], ["photo_id", 10], ["created_at", "2019-09-16 19:09:11.509252"], ["updated_at", "2019-09-16 19:09:11.509252"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("date_time", "comment_text", "user_id", "photo_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["date_time", "2013-09-04"], ["comment_text", "I'm going to be watching how well you do in CS 6320!"], ["user_id", 5], ["photo_id", 11], ["created_at", "2019-09-16 19:09:11.510343"], ["updated_at", "2019-09-16 19:09:11.510343"]]
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190916190824"]]
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-09-16 19:09:11.522876"], ["updated_at", "2019-09-16 19:09:11.522876"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:11:47 -0700
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 11.4ms | Allocations: 5052)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 500 Internal Server Error in 1805ms (ActiveRecord: 0.8ms | Allocations: 318681)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in C:/Users/nbdes/RubymineProjects/PhotoSite/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:12:41 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 752)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 500 Internal Server Error in 1552ms (ActiveRecord: 0.2ms | Allocations: 9547)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application in C:/Users/nbdes/RubymineProjects/PhotoSite/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6:     <%= csp_meta_tag %>
+     7: 
+     8:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     9:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10:   </head>
+    11: 
+    12:   <body>
+  
+app/views/layouts/application.html.erb:9
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:14:17 -0700
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 9.8ms | Allocations: 5052)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1617ms (Views: 1601.0ms | ActiveRecord: 1.0ms | Allocations: 309942)
+
+
+Started GET "/show/1" for 127.0.0.1 at 2019-09-16 12:14:22 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/show/1"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:14:24 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 5.3ms | Allocations: 752)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1467ms (Views: 1465.8ms | ActiveRecord: 0.2ms | Allocations: 9232)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:22:29 -0700
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 11.2ms | Allocations: 5052)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1847ms (Views: 1827.2ms | ActiveRecord: 0.9ms | Allocations: 318045)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:22:37 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 2253)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 3459)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: <h1>Information</h1>
+    5: <br>
+    6: <% image_id=@id_var %>
+    7: <% for photo in @photos %>
+    8:   <% if photo.user_id.to_i == image_id.to_i %>
+    9:     <p>
+   10:       <strong>Id: </strong>
+  
+app/views/photos/index.html.erb:7
+Started GET "/show/1" for 127.0.0.1 at 2019-09-16 12:24:00 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/show/1"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:24:02 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1005)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1433ms (Views: 1431.2ms | ActiveRecord: 0.2ms | Allocations: 11929)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:24:08 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 734)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1427ms (Views: 1426.4ms | ActiveRecord: 0.1ms | Allocations: 10894)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:24:11 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1593)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 2791)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: <h1>Information</h1>
+    5: <br>
+    6: <% image_id=@id_var %>
+    7: <% for photo in @photos %>
+    8:   <% if photo.user_id.to_i == image_id.to_i %>
+    9:     <p>
+   10:       <strong>Id: </strong>
+  
+app/views/photos/index.html.erb:7
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:24:13 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 734)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1478ms (Views: 1477.0ms | ActiveRecord: 0.1ms | Allocations: 10940)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:24:15 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 728)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1459ms (Views: 1458.6ms | ActiveRecord: 0.2ms | Allocations: 10880)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:24:18 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1196)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1817)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: <h1>Information</h1>
+    5: <br>
+    6: <% image_id=@id_var %>
+    7: <% for photo in @photos %>
+    8:   <% if photo.user_id.to_i == image_id.to_i %>
+    9:     <p>
+   10:       <strong>Id: </strong>
+  
+app/views/photos/index.html.erb:7
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:24:58 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1589)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms | Allocations: 2960)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    4: <h1>Information</h1>
+    5: <br>
+    6: <% image_id=@id_var %>
+    7: <% for photo1 in @photos %>
+    8:   <% if photo1.user_id.to_i == image_id.to_i %>
+    9:     <p>
+   10:       <strong>Id: </strong>
+  
+app/views/photos/index.html.erb:7
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:25:52 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 112)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1461ms (Views: 1459.4ms | ActiveRecord: 0.0ms | Allocations: 11207)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:27:26 -0700
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 382)
+[Webpacker] Compiling…
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:27:28 -0700
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1619ms (Views: 1604.0ms | ActiveRecord: 0.0ms | Allocations: 308132)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1456ms (Views: 1455.5ms | ActiveRecord: 0.0ms | Allocations: 10551)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:27:52 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 134)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1453ms (Views: 1451.2ms | ActiveRecord: 0.0ms | Allocations: 11245)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:28:12 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 128)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1451ms (Views: 1448.6ms | ActiveRecord: 0.0ms | Allocations: 11222)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:28:18 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1513ms (Views: 1512.4ms | ActiveRecord: 0.0ms | Allocations: 10153)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:28:59 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 130)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1494ms (Views: 1492.3ms | ActiveRecord: 0.0ms | Allocations: 11234)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:29:18 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 129)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1463ms (Views: 1461.6ms | ActiveRecord: 0.0ms | Allocations: 11218)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:29:26 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 129)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1487ms (Views: 1484.5ms | ActiveRecord: 0.0ms | Allocations: 11223)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:31:40 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1436ms (Views: 1434.5ms | ActiveRecord: 0.0ms | Allocations: 10161)
+
+
+Started GET "/photos/index/5" for 127.0.0.1 at 2019-09-16 12:31:45 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"5"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 8)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1446ms (Views: 1445.2ms | ActiveRecord: 0.0ms | Allocations: 10175)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:31:52 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 7.9ms | Allocations: 4880)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1505ms (Views: 1502.7ms | ActiveRecord: 0.9ms | Allocations: 15609)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:31:55 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1442ms (Views: 1441.1ms | ActiveRecord: 0.0ms | Allocations: 10166)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:32:29 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 129)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1468ms (Views: 1465.9ms | ActiveRecord: 0.0ms | Allocations: 11223)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:33:20 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1442ms (Views: 1438.7ms | ActiveRecord: 0.0ms | Allocations: 11772)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:34:04 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendered photos/index.html.erb within layouts/application (Duration: 295.2ms | Allocations: 209634)
+Completed 500 Internal Server Error in 303ms (ActiveRecord: 0.9ms | Allocations: 212458)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `id' for #<#<Class:0x000000000d5dfa40>:0x000000000d5de0f0>
+Did you mean?  @@id):
+    4: <h1>Information</h1>
+    5: <br>
+    6: <% image_id=@id_var.to_i %>
+    7: <h1><%= id %></h1>
+    8: 
+    9: </body>
+   10: </html>
+  
+app/views/photos/index.html.erb:7
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:34:13 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 126)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1471ms (Views: 1469.4ms | ActiveRecord: 0.0ms | Allocations: 11262)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:34:30 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 129)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1522ms (Views: 1518.1ms | ActiveRecord: 0.0ms | Allocations: 11225)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:35:01 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 129)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1483ms (Views: 1482.0ms | ActiveRecord: 0.0ms | Allocations: 11218)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:35:26 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+Completed 200 OK in 1469ms (Views: 1468.0ms | ActiveRecord: 0.0ms | Allocations: 10160)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:36:47 -0700
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 402)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1703ms (Views: 1684.7ms | ActiveRecord: 0.0ms | Allocations: 307296)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:40:07 -0700
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 402)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1730ms (Views: 1712.7ms | ActiveRecord: 0.0ms | Allocations: 312515)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:42:26 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  Rendered photos/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1479ms (Views: 1456.5ms | ActiveRecord: 0.9ms | Allocations: 19314)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 12:42:55 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 25.1ms | Allocations: 13166)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1496ms (Views: 1489.0ms | ActiveRecord: 2.3ms | Allocations: 24738)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 12:43:06 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 988)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1420ms (Views: 1418.5ms | ActiveRecord: 0.2ms | Allocations: 11752)
+
+
+Started GET "/photos/index/3" for 127.0.0.1 at 2019-09-16 12:43:10 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 9.5ms | Allocations: 3742)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1448ms (Views: 1443.9ms | ActiveRecord: 0.6ms | Allocations: 14391)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:45:03 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 10.3ms | Allocations: 3742)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1518ms (Views: 1514.6ms | ActiveRecord: 0.6ms | Allocations: 14382)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:46:16 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 18.2ms | Allocations: 4153)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1501ms (Views: 1496.8ms | ActiveRecord: 0.7ms | Allocations: 15738)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:46:42 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 12.7ms | Allocations: 4163)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1465ms (Views: 1461.3ms | ActiveRecord: 0.7ms | Allocations: 15730)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:47:09 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:19
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:21
+  Rendered photos/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 4161)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1494ms (Views: 1489.2ms | ActiveRecord: 0.6ms | Allocations: 15728)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 12:59:34 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 11.1ms | Allocations: 4294)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1506ms (Views: 1501.5ms | ActiveRecord: 0.8ms | Allocations: 15875)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 13:00:01 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 4230)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1508ms (Views: 1501.0ms | ActiveRecord: 0.6ms | Allocations: 15796)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 13:00:05 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 15.8ms | Allocations: 3798)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1456ms (Views: 1452.5ms | ActiveRecord: 0.6ms | Allocations: 14429)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 13:00:12 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 17.2ms | Allocations: 4230)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1457ms (Views: 1453.0ms | ActiveRecord: 0.6ms | Allocations: 15791)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 13:02:44 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 13.8ms | Allocations: 4271)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1481ms (Views: 1476.6ms | ActiveRecord: 0.6ms | Allocations: 15835)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 13:03:04 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 4270)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1501ms (Views: 1495.4ms | ActiveRecord: 0.6ms | Allocations: 15836)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 13:03:11 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 14.6ms | Allocations: 4271)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1459ms (Views: 1455.0ms | ActiveRecord: 0.7ms | Allocations: 15840)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 13:03:24 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 984)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1532ms (Views: 1530.6ms | ActiveRecord: 0.1ms | Allocations: 12114)
+
+
+Started GET "/photos/index/4" for 127.0.0.1 at 2019-09-16 13:03:28 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 20.1ms | Allocations: 5958)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1456ms (Views: 1451.2ms | ActiveRecord: 0.7ms | Allocations: 17162)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 13:03:38 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 9.6ms | Allocations: 3105)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1472ms (Views: 1468.4ms | ActiveRecord: 0.5ms | Allocations: 13745)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 13:06:17 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 3572)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 2218ms (Views: 2213.4ms | ActiveRecord: 0.7ms | Allocations: 15140)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 13:06:21 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 8.3ms | Allocations: 3111)
+[Webpacker] Compiling…
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 13:06:22 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 10.6ms | Allocations: 3164)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1429ms (Views: 1425.5ms | ActiveRecord: 0.8ms | Allocations: 29411)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 13:06:23 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 979)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1545ms (Views: 1541.4ms | ActiveRecord: 1.3ms | Allocations: 27661)
+
+
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1478ms (Views: 1475.5ms | ActiveRecord: 0.2ms | Allocations: 12992)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 13:06:27 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 14.9ms | Allocations: 3827)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1513ms (Views: 1508.9ms | ActiveRecord: 0.5ms | Allocations: 14459)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 13:06:31 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 8.6ms | Allocations: 3111)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1497ms (Views: 1494.1ms | ActiveRecord: 0.5ms | Allocations: 13743)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 13:09:55 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 8.6ms | Allocations: 3827)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1492ms (Views: 1488.0ms | ActiveRecord: 0.6ms | Allocations: 14459)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 13:09:59 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 728)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1395ms (Views: 1394.3ms | ActiveRecord: 0.2ms | Allocations: 10914)
+
+
+Started GET "/say/index" for 127.0.0.1 at 2019-09-16 13:28:54 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/say/index"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 13:28:57 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 764)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1437ms (Views: 1436.4ms | ActiveRecord: 0.2ms | Allocations: 10985)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 13:32:44 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 12.5ms | Allocations: 3863)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1504ms (Views: 1498.7ms | ActiveRecord: 0.8ms | Allocations: 14514)
+
+
+Started GET "/photos/index/3" for 127.0.0.1 at 2019-09-16 13:34:17 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 12.7ms | Allocations: 3827)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1452ms (Views: 1448.1ms | ActiveRecord: 0.5ms | Allocations: 14460)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 13:34:19 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 9.8ms | Allocations: 3111)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1506ms (Views: 1498.3ms | ActiveRecord: 0.6ms | Allocations: 13740)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 13:34:34 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 10.7ms | Allocations: 3827)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1414ms (Views: 1410.5ms | ActiveRecord: 0.5ms | Allocations: 14457)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 13:36:01 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 12.6ms | Allocations: 3111)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1449ms (Views: 1445.5ms | ActiveRecord: 0.6ms | Allocations: 13738)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 13:38:22 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 11.8ms | Allocations: 3827)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1493ms (Views: 1488.9ms | ActiveRecord: 0.6ms | Allocations: 14457)
+
+
+Started GET "/say/index" for 127.0.0.1 at 2019-09-16 14:01:25 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/say/index"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 14:01:30 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 746)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1430ms (Views: 1429.3ms | ActiveRecord: 0.2ms | Allocations: 10938)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 14:10:20 -0700
+  [1m[35m (6.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 17.4ms | Allocations: 5052)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1896ms (Views: 1857.4ms | ActiveRecord: 1.5ms | Allocations: 317160)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 14:10:42 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 21.6ms | Allocations: 13370)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1734ms (Views: 1702.7ms | ActiveRecord: 2.1ms | Allocations: 27679)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 14:11:33 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 3832)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1621ms (Views: 1616.7ms | ActiveRecord: 0.9ms | Allocations: 14479)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 14:12:01 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 3116)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1800ms (Views: 1794.7ms | ActiveRecord: 0.6ms | Allocations: 13756)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2019-09-16 17:58:27 -0700
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 10.7ms | Allocations: 5052)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1783ms (Views: 1763.6ms | ActiveRecord: 0.9ms | Allocations: 317161)
+
+
+Started GET "/photos/index/3" for 127.0.0.1 at 2019-09-16 17:58:41 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 20.6ms | Allocations: 13370)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 1458ms (Views: 1441.5ms | ActiveRecord: 1.8ms | Allocations: 27690)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2019-09-16 17:58:55 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 23.1ms | Allocations: 3832)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 3629ms (Views: 3622.5ms | ActiveRecord: 1.1ms | Allocations: 14495)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2019-09-16 17:59:04 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 31.2ms | Allocations: 3832)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 3635ms (Views: 3628.0ms | ActiveRecord: 1.3ms | Allocations: 14484)
+
+
+Started GET "/photos/index/6" for 127.0.0.1 at 2019-09-16 17:59:12 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 22.7ms | Allocations: 3115)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+error Command "webpack" not found.
+
+[Webpacker] yarn run v1.17.3
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Completed 200 OK in 3696ms (Views: 3687.5ms | ActiveRecord: 1.9ms | Allocations: 13767)
+
+
+Started GET "/users" for ::1 at 2019-10-22 22:38:58 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-10-22 22:39:01 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.5.0/gems/railties-6.0.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.5.0/gems/railties-6.0.0/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.3ms | Allocations: 200)
+Completed 200 OK in 12ms (Views: 10.6ms | ActiveRecord: 0.0ms | Allocations: 1004)
+
+
+Started GET "/index" for ::1 at 2019-10-22 22:39:04 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/index"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/users/index" for ::1 at 2019-10-22 22:39:38 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:28
+  Rendered users/index.html.erb within layouts/application (Duration: 12.8ms | Allocations: 4804)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+/var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:13:in ``': No such file or directory - yarn (Errno::ENOENT)
+	from /var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:13:in `initialize'
+	from /var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:6:in `new'
+	from /var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:6:in `run'
+	from ./bin/webpack:18:in `block in <main>'
+	from ./bin/webpack:17:in `chdir'
+	from ./bin/webpack:17:in `<main>'
+
+[Webpacker] 
+Completed 200 OK in 666ms (Views: 653.1ms | ActiveRecord: 2.0ms | Allocations: 325300)
+
+
+Started GET "/photos/index/1" for ::1 at 2019-10-22 22:39:40 -0700
+Processing by PhotosController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photos_controller.rb:4:in `index'
+  Rendering photos/index.html.erb within layouts/application
+  [1m[36mPhoto Load (1.1ms)[0m  [1m[34mSELECT "photos".* FROM "photos"[0m
+  ↳ app/views/photos/index.html.erb:7
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/photos/index.html.erb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/photos/index.html.erb:22
+  Rendered photos/index.html.erb within layouts/application (Duration: 24.8ms | Allocations: 12838)
+[Webpacker] Compiling…
+[Webpacker] Compilation failed:
+/var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:13:in ``': No such file or directory - yarn (Errno::ENOENT)
+	from /var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:13:in `initialize'
+	from /var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:6:in `new'
+	from /var/lib/gems/2.5.0/gems/webpacker-4.0.7/lib/webpacker/runner.rb:6:in `run'
+	from ./bin/webpack:18:in `block in <main>'
+	from ./bin/webpack:17:in `chdir'
+	from ./bin/webpack:17:in `<main>'
+
+[Webpacker] 
+Completed 200 OK in 272ms (Views: 253.9ms | ActiveRecord: 5.0ms | Allocations: 22921)
+
+
