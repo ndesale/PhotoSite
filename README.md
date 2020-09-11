@@ -1,7 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Photosite: anyone an upload and make comments on photos.
+
+![welcome screen](/tmp/photopr1.png)
+
+![comment screen](/tmp/photopr2.png)
+
 
 Things you may want to cover:
 
@@ -20,5 +24,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
